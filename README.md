@@ -15,7 +15,7 @@ rmdir /S /Q %project%\.git
 
 -   Installs the "Packages (global)" listed below
 -   Installs the "Packages (local)" listed below
--   Clones the "Init Folder" listed below from Full Template
+-   Clones the "Init Folder" listed below from [Full Template](https://github.com/lukesrw/full-template)
 
 ```
 node tools/init <feature1> <feature2> ...
