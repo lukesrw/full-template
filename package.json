@@ -5,7 +5,7 @@
         "clone-dev": "xcopy /E /I /Y ..\\full-template full-template",
         "clone-git": "git clone https://github.com/lukesrw/full-template.git",
         "clone-skip": "echo Skipped Clone.",
-        "clone": "npm run clone-dev",
+        "clone": "npm run clone-git",
         "clone-clean-skip": "echo Skipped Clone Clean.",
         "clone-clean-real": "rmdir /S /Q full-template",
         "clone-clean": "npm run clone-clean-real",
