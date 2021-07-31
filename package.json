@@ -1,7 +1,7 @@
 {
     "main": "./js/",
     "scripts": {
-        "clone-init": "xcopy /E /I /Y . ..\\empty-template && cd ..\\empty-template && rmdir /S /Q eslint git prettier scss ts vue",
+        "clone-init": "xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q eslint git prettier scss ts vue",
         "clone-dev": "xcopy /E /I /Y ..\\full-template full-template",
         "clone-git": "git clone https://github.com/lukesrw/full-template.git",
         "clone-skip": "echo Skipped Clone.",
