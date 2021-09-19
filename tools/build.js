@@ -7,7 +7,7 @@ const { join } = require("path");
  * @returns {void}
  */
 function output(title) {
-    console.log(`Starting ${title} Watcher`);
+    console.log(`Watching ${title}`);
 
     return (error, stdout, stderr) => {
         error = error || stderr;
@@ -41,19 +41,28 @@ module.exports = async () => {
     }
 
     if (exists.ts) {
-        exec("npm run ts-watch", output("TypeScript (./ts)"));
+        exec("tsc --project ts --watch", output("./ts for ./js"));
     }
 
     if (exists.vue) {
-        exec("npm run vue", output("Vue (./vue)"));
+        exec(
+            "vue-cli-service build --watch ./vue/main.js",
+            output("./vue for ./dist")
+        );
     }
 
     if (exists.scss) {
         if (exists.vue) {
-            exec("npm run scss-vue", output("Scss (./dist/css/scss/)"));
+            exec(
+                "sass --watch ./scss:./dist/css/scss",
+                output("./scss for ./dist/css/scss")
+            );
         }
         if (exists.public || !exists.vue) {
-            exec("npm run scss", output("Scss (./public/css/scss/)"));
+            exec(
+                "sass --watch ./scss:./public/css/scss",
+                output("./scss for ./public/css/scss")
+            );
         }
     }
 };
