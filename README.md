@@ -6,6 +6,7 @@ Use this template through the [GitHub "Use this template"](https://github.com/lu
 set project=my-new-project
 git clone --depth=1 https://github.com/lukesrw/template.git %project%
 rmdir /S /Q %project%\.git
+git init %project%
 
 ```
 
