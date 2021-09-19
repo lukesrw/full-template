@@ -2,7 +2,7 @@ import { BrowserWindow, shell } from "electron";
 import { getSync as getSetting, set as setSetting } from "electron-settings";
 import { BrowserWindowConstructorOptions } from "electron/main";
 import { join } from "path";
-import { debounce } from "./lib/utils";
+import { debounce } from "./utils";
 
 const ID_TO_FILE = {
     main: join(__dirname, "..", "..", "public", "index.html")
