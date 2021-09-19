@@ -2,7 +2,15 @@ const child_process = require("child_process");
 
 function exec(command) {
     return new Promise(resolve => {
-        return child_process.exec(command, resolve);
+        return child_process.exec(command, (error, stdout, stderr) => {
+            if (error) console.log(error);
+
+            if (stdout) console.log(stdout);
+
+            if (stderr) console.log(stderr);
+
+            return resolve();
+        });
     });
 }
 
@@ -57,7 +65,7 @@ module.exports = async () => {
                  * 3. Copy the "ts" directory from full-template into root
                  */
                 await exec(
-                    "npm i -g typescript && npm i -D @types/node && xcopy .\\full-template\\ts ts"
+                    "npm i -g typescript && npm i -D @types/node && xcopy /E /I /Y .\\full-template\\ts ts"
                 );
                 break;
 
@@ -70,7 +78,7 @@ module.exports = async () => {
                  * 5. Copy the "vue" directory from full-template into root
                  */
                 await exec(
-                    "npm i -g @vue/cli-service && npm i -g vue-template-compiler && npm i vue && npm i vue-router && xcopy .\\full-template\\vue vue"
+                    "npm i -g @vue/cli-service && npm i -g vue-template-compiler && npm i vue && npm i vue-router && xcopy /E /I /Y .\\full-template\\vue vue"
                 );
                 break;
 
@@ -81,7 +89,7 @@ module.exports = async () => {
                  * 2. Copy the "scss" directory from full-template to root
                  */
                 await exec(
-                    "npm i -g sass && xcopy .\\full-template\\scss scss"
+                    "npm i -g sass && xcopy /E /I /Y .\\full-template\\scss scss"
                 );
                 break;
 
@@ -96,12 +104,13 @@ module.exports = async () => {
                 await exec(
                     "npm i -D electron && npm i -D @electron-forge/cli && npm i -D electron-settings && xcopy /E /I /Y .\\full-template\\electron\\* . && npx electron-forge import"
                 );
+                break;
 
             default:
                 /**
                  * 1. Copy contents of the (input) directory from full-template into root
                  */
-                await exec(`xcopy .\\full-template\\${names[i]}\\* .`);
+                await exec(`xcopy /E /I /Y .\\full-template\\${names[i]}\\* .`);
         }
     }
 
