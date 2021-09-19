@@ -54,10 +54,10 @@ module.exports = async () => {
                 /**
                  * 1. Install "typescript" globally
                  * 2. Install "@types/node"
-                 * 3. Move the "ts" directory from full-template into root
+                 * 3. Copy the "ts" directory from full-template into root
                  */
                 await exec(
-                    "npm i -g typescript && npm i -D @types/node && move full-template\\ts ts"
+                    "npm i -g typescript && npm i -D @types/node && xcopy .\\full-template\\ts ts"
                 );
                 break;
 
@@ -67,10 +67,10 @@ module.exports = async () => {
                  * 2. Install "vue-template-compiler" globally
                  * 3. Install "vue"
                  * 4. Install "vue-router"
-                 * 5. Move the "vue" directory from full-template into root
+                 * 5. Copy the "vue" directory from full-template into root
                  */
                 await exec(
-                    "npm i -g @vue/cli-service && npm i -g vue-template-compiler && npm i vue && npm i vue-router && move full-template\\vue vue"
+                    "npm i -g @vue/cli-service && npm i -g vue-template-compiler && npm i vue && npm i vue-router && xcopy .\\full-template\\vue vue"
                 );
                 break;
 
@@ -78,9 +78,11 @@ module.exports = async () => {
             case "sass":
                 /**
                  * 1. Install "sass" globally
-                 * 2. Move the "scss" directory from full-template to root
+                 * 2. Copy the "scss" directory from full-template to root
                  */
-                await exec("npm i -g sass && move full-template\\scss scss");
+                await exec(
+                    "npm i -g sass && xcopy .\\full-template\\scss scss"
+                );
                 break;
 
             case "electron":
@@ -88,18 +90,18 @@ module.exports = async () => {
                  * 1. Install "electron"
                  * 2. Install "@electron-forge/cli"
                  * 3. Install "electron-settings"
-                 * 4. Move contents of the "electron" directory from full-template into root
+                 * 4. Copy contents of the "electron" directory from full-template into root
                  * 5. Run electron-forge's import command
                  */
                 await exec(
-                    "npm i -D electron && npm i -D @electron-forge/cli && npm i -D electron-settings && move full-template\\electron . && npx electron-forge import"
+                    "npm i -D electron && npm i -D @electron-forge/cli && npm i -D electron-settings && xcopy /E /I /Y .\\full-template\\electron\\* . && npx electron-forge import"
                 );
 
             default:
                 /**
-                 * 1. Move contents of the (input) directory from full-template into root
+                 * 1. Copy contents of the (input) directory from full-template into root
                  */
-                await exec(`move full-template\\${names[i]}\\* .`);
+                await exec(`xcopy .\\full-template\\${names[i]}\\* .`);
         }
     }
 
