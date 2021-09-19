@@ -24,7 +24,7 @@ module.exports = async () => {
         switch (name) {
             case "clone":
                 await exec(
-                    'xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q eslint git prettier scss ts vue electron && git add -A && git commit -m "Full Template updates" && git push'
+                    'rmdir /S /Q ..\\template\\tools && xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q eslint git prettier scss ts vue electron && git add -A && git commit -m "Full Template updates" && git push'
                 );
                 break;
 
