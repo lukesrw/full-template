@@ -1,7 +1,10 @@
-/.buildpath
-/.project
-/.settings/
-./dist/
 node_modules
-tsconfig.tsbuildinfo
+out
+dist
+
+.buildpath
+.settings
+.project
+
+*.tsbuildinfo
 *.tgz
