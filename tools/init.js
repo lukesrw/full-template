@@ -12,18 +12,20 @@ module.exports = async () => {
 
     if (is_test) {
         await exec("xcopy /E /I /Y ..\\full-template full-template");
+
+        names.shift();
     } else {
         await exec(
             "git clone --depth=1 https://github.com/lukesrw/full-template.git"
         );
     }
 
-    for (let i = 2; i < process.argv.length; i += 1) {
-        let name = process.argv[i].toLowerCase();
-
+    names.forEach(async name => {
         switch (name) {
             case "clone":
-                'xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q eslint git prettier scss ts vue && git add -A && git commit -m "Full Template updates" && git push';
+                await exec(
+                    'xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q eslint git prettier scss ts vue electron && git add -A && git commit -m "Full Template updates" && git push'
+                );
                 break;
 
             case "ts":
@@ -51,7 +53,7 @@ module.exports = async () => {
             default:
                 await exec(`move full-template\\${name}\\* .`);
         }
-    }
+    });
 
     await exec("rmdir /S /Q full-template");
 };
