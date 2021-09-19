@@ -23,7 +23,7 @@
         "scss": "sass --watch ./scss:./public/css/scss",
         "prettier-init": "move full-template\\prettier\\* .",
         "prettier-clean": "del .prettierrc",
-        "git-init": "rmdir /S /Q .git && move full-template/git\\* . && git init",
+        "git-init": "move full-template/git\\* .",
         "git-clean": "del .gitignore",
         "eslint-init": "move full-template\\eslint\\* .",
         "eslint-clean": "del .eslintrc.json && del .eslintignore",
