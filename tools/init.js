@@ -44,7 +44,9 @@ module.exports = async () => {
                 break;
 
             case "electron":
-                await exec("move full-template\\electron .");
+                await exec(
+                    "npm i -D electron && npm i -D @electron-forge/cli && npm i -D electron-settings && move full-template\\electron . && npx electron-forge import"
+                );
 
             default:
                 await exec(`move full-template\\${name}\\* .`);
