@@ -13,29 +13,36 @@ export function createWindow(id: keyof typeof ID_TO_FILE) {
         throw new Error("Missing file for Window");
     }
 
-    // retrieve cache
-    let cache = (getSetting(`window-${id}`) || {}) as {
+    /* #region retrieve cache & set default options */
+    let cache = Object.assign(
+        {
+            options: {}
+        },
+        getSetting(`window-${id}`)
+    ) as {
         options: BrowserWindowConstructorOptions;
         is_maximized: boolean;
         [key: string]: any;
     };
 
-    // set default/required options
     cache.options = Object.assign(
         {
             width: 800,
-            height: 800
+            height: 800,
+            webPreferences: {}
         },
         cache.options,
         {
-            show: false,
-            webPreferences: Object.assign(cache.options.webPreferences, {
-                nodeIntegration: true,
-                contextIsolation: false,
-                nativeWindowOpen: true
-            })
+            show: false
         }
     );
+
+    cache.options.webPreferences = Object.assign(cache.options.webPreferences, {
+        nodeIntegration: true,
+        contextIsolation: false,
+        nativeWindowOpen: true
+    });
+    /* #endregion */
 
     let window = new BrowserWindow(cache.options);
 
