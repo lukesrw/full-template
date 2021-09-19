@@ -1,7 +1,7 @@
 {
     "main": "./js/",
     "scripts": {
-        "start": "tsc --project ts && node ."
+        "build": "tsc --project ts && node ."
     },
     "dependencies": {},
     "devDependencies": {}
