@@ -53,7 +53,7 @@ module.exports = async () => {
                  * 4. Commit changes to repository
                  */
                 await exec(
-                    'xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q eslint git prettier scss ts vue electron && git add -A && git commit -m "Full Template updates" && git push'
+                    'xcopy /E /I /Y . ..\\template && cd ..\\template && rmdir /S /Q blueprints && git add -A && git commit -m "Full Template updates" && git push'
                 );
 
                 break inits;
@@ -65,7 +65,7 @@ module.exports = async () => {
                  * 3. Copy the "ts" directory from full-template into root
                  */
                 await exec(
-                    "npm i -g typescript && npm i -D @types/node && xcopy /E /I /Y .\\full-template\\ts ts"
+                    "npm i -g typescript && npm i -D @types/node && xcopy /E /I /Y .\\full-template\\blueprints\\ts ts"
                 );
                 break;
 
@@ -78,7 +78,7 @@ module.exports = async () => {
                  * 5. Copy the "vue" directory from full-template into root
                  */
                 await exec(
-                    "npm i -g @vue/cli-service && npm i -g vue-template-compiler && npm i vue && npm i vue-router && xcopy /E /I /Y .\\full-template\\vue vue"
+                    "npm i -g @vue/cli-service && npm i -g vue-template-compiler && npm i vue && npm i vue-router && xcopy /E /I /Y .\\full-template\\blueprints\\vue vue"
                 );
                 break;
 
@@ -89,7 +89,7 @@ module.exports = async () => {
                  * 2. Copy the "scss" directory from full-template to root
                  */
                 await exec(
-                    "npm i -g sass && xcopy /E /I /Y .\\full-template\\scss scss"
+                    "npm i -g sass && xcopy /E /I /Y .\\full-template\\blueprints\\scss scss"
                 );
                 break;
 
@@ -102,7 +102,7 @@ module.exports = async () => {
                  * 5. Run electron-forge's import command
                  */
                 await exec(
-                    "npm i -D electron && npm i -D @electron-forge/cli && npm i -D electron-settings && xcopy /E /I /Y .\\full-template\\electron\\* . && npx electron-forge import"
+                    "npm i -D electron && npm i -D @electron-forge/cli && npm i -D electron-settings && xcopy /E /I /Y .\\full-template\\blueprints\\electron\\* . && npx electron-forge import"
                 );
                 break;
 
@@ -110,7 +110,9 @@ module.exports = async () => {
                 /**
                  * 1. Copy contents of the (input) directory from full-template into root
                  */
-                await exec(`xcopy /E /I /Y .\\full-template\\${names[i]}\\* .`);
+                await exec(
+                    `xcopy /E /I /Y .\\full-template\\blueprints\\${names[i]}\\* .`
+                );
         }
     }
 
