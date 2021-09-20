@@ -20,7 +20,8 @@ module.exports = async () => {
 
     if (is_test) names.shift();
 
-    if (names[0] !== "clone") {
+    let is_clone = names[0] === "clone";
+    if (!is_clone) {
         /**
          * Clone full-template (either from sibling directory, or git repository)
          */
@@ -116,10 +117,12 @@ module.exports = async () => {
         }
     }
 
-    /**
-     * Remove the cloned full-template
-     */
-    await exec("rmdir /S /Q full-template");
+    if (!is_clone) {
+        /**
+         * Remove the cloned full-template
+         */
+        await exec("rmdir /S /Q full-template");
+    }
 };
 
 if (!module.parent) module.exports();
