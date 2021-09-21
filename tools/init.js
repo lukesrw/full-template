@@ -107,6 +107,15 @@ module.exports = async () => {
                 );
                 break;
 
+            case "extensions":
+                /**
+                 * Copy contents of the "extensions" directory from full-template into root
+                 */
+                await exec(
+                    "xcopy /E /I /Y .\\full-template\\blueprints\\extensions\\* ."
+                );
+                break;
+
             default:
                 /**
                  * 1. Copy contents of the (input) directory from full-template into root
