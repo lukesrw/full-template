@@ -1,6 +1,6 @@
 /*global browser chrome*/
 
-console.log("background.js");
+console.info("background.js");
 
 let main = chrome || browser;
 
