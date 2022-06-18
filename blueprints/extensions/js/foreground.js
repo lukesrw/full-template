@@ -1,5 +1,5 @@
 /*global browser*/
 
-console.log("content.js");
+console.info("foreground.js");
 
 browser.runtime.onMessage.addListener(async () => "Polo");
